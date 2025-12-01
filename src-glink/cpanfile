@@ -1,0 +1,7 @@
+requires 'perl', '5.36.0';
+
+requires 'Modern::Perl', '== 1.20200211';
+requires 'Data::Dumper', '2.183';
+requires 'Struct::Dumb', '== 0.12';
+requires 'Config::Scoped', '== 0.22';
+requires 'Debug::Easy', '== 2.14';

@@ -1,0 +1,15 @@
+
+repository ../../src-bios/vx2
+repository original-roms=../../original-roms/bios-vx2
+
+$(phony build-vx2): bios.hex original-bios.hex
+	@echo " \n ********************************************************************** "
+	@echo -n " Mismatched lines between VX2 ROM and built ROM hex files:\n "
+	@noecho diff -y --suppress-common-lines original-bios.hex bios.hex | wc -l
+	@echo " ********************************************************************** \n"
+
+original-bios.bin original-bios.hex: original-roms/bios.bin
+	@cp original-roms/bios.bin original-bios.bin
+	srec_cat -Output original-bios.hex original-bios.bin -Binary
+
+include Makeppfile.mk

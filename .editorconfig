@@ -1,0 +1,18 @@
+[*]
+charset = utf-8
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+end_of_line = crlf
+
+[*.{asm,inc,txt}]
+indent_size = 8
+
+[*.lnk]
+indent_size = 4
+
+[*.{pl,sh}]
+end_of_line = lf
+
+[tools/glink]
+end_of_line = lf
