@@ -30,7 +30,7 @@ linker {
 
 		advance	{ to	=> F000:0000											}
 		link	{ input	=> reset												}
-		advance	{ to	=> F000:FFF0											}
+		fill	{ to	=> F000:FFF0		with => 0FF							}
 		link	{ input	=> rom_trailer											}
 		end		{ }
 	]
