@@ -1,0 +1,22 @@
+VX2 BIOS Diagnostic Codes
+═════════════════════════
+
+Numbers in this document are hexadecimal, unless otherwise indicated.
+
+Codes are written as either 16-bit I/O writes to port 0CF8h or as 8-bit writes
+to ports 0CF8h and 0CF9h.
+
+D = Original code description from service manual, appendix B.
+N = Explanatory note describing actual BIOS behaviour.
+U = Undocumented code.
+
+Code
+Hi/Lo	? Description
+─────	─ ──────────────────────────────────────────────────────────────────────
+01.01	D Processor clocks OK after jump to 0FFFF:00AB
+	N No actual test performed: CPU jumping from reset vector is enough to
+	  get this code.  The reference to CS:IP reaching 0FFFF:00AB is
+	  incorrect: this is outside the real-mode address space.  The actual
+	  end of this test is at 0F000:00AB.
+	N Low byte of code is immediately replaced by the shutdown reason read
+	  from CMOS register 0Fh.

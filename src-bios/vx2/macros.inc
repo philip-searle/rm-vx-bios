@@ -93,3 +93,18 @@ mov_		%macro
 xor_		%macro
 		xor	%*,CODE=LONG
 		%endmacro
+
+; ═╡ Diagnostic code output ╞═══════════════════════════════════════════════════
+; Macros to output codes to the 16-bit diagnostic port.
+; See [Service B.1] for documented diagnostic codes and [Service B.2] for the
+; diagnostic card schematic.
+DiagOut		%macro	Code, Subcode
+		mov	dx, PORT_RM_DIAG
+		%if "%Code" != ""
+		mov	ax, (%Code << 8) | %Subcode
+		out	dx, ax
+		%else
+		mov_	al, %Subcode
+		out	dx, al
+		%endif
+		%endmacro
