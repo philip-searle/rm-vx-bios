@@ -20,3 +20,7 @@ Hi/Lo	? Description
 	  end of this test is at 0F000:00AB.
 	N Low byte of code is immediately replaced by the shutdown reason read
 	  from CMOS register 0Fh.
+01.02	D Reset interrupt controller on 3010
+	N 3010 refers to the Feraday FE3010.
+	N Both PIC1 and PIC2 are initialized in IBM-compatible mode.
+01.03	D Reset maths co-processor

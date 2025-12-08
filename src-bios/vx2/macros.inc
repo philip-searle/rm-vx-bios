@@ -94,6 +94,24 @@ xor_		%macro
 		xor	%*,CODE=LONG
 		%endmacro
 
+; ═╡ Weird instruction encodings ╞══════════════════════════════════════════════
+; Some instructions can't be encoded by EuroASM.  These macros manually emit the
+; necessary bytes.
+
+MovEaxCr0	%macro
+		; Euroasm encodes "mov eax,cr0" as 0F20C0h (ModR/M = 11/000) but
+		; the original BIOS assembler encoded it as 0F2000h
+		; (ModR/M = 00/000).  Both are valid: Intel developer manual
+		; states that for moves to/from control registers "the 2 bits
+		; in the mod field are ignored".
+		d b 0Fh,20h,00h
+		%endmacro
+
+MovCr0Eax	%macro
+		; See comment in MovEaxCr0
+		d b 0Fh,22h,00h
+		%endmacro
+
 ; ═╡ Diagnostic code output ╞═══════════════════════════════════════════════════
 ; Macros to output codes to the 16-bit diagnostic port.
 ; See [Service B.1] for documented diagnostic codes and [Service B.2] for the
@@ -104,7 +122,11 @@ DiagOut		%macro	Code, Subcode
 		mov	ax, (%Code << 8) | %Subcode
 		out	dx, ax
 		%else
-		mov_	al, %Subcode
+		%if TYPE#%Subcode = "R"
+		mov	al, %Subcode,CODE=LONG
+		%else
+		mov	al, %Subcode
+		%endif
 		out	dx, al
 		%endif
 		%endmacro
