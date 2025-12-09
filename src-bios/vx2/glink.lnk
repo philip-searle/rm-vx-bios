@@ -8,6 +8,7 @@
 input {
 	files => [
 		reset.obj
+		sdh_normal.obj
 		rom_trailer.obj
 	]
 }
@@ -30,6 +31,7 @@ linker {
 
 		advance	{ to	=> F000:0000											}
 		link	{ input	=> reset												}
+		link	{ input	=> sdh_normal											}
 		fill	{ to	=> F000:FFF0		with => 0FF							}
 		link	{ input	=> rom_trailer											}
 		end		{ }

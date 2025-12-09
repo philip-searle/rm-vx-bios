@@ -24,3 +24,8 @@ Hi/Lo	? Description
 	N 3010 refers to the Feraday FE3010.
 	N Both PIC1 and PIC2 are initialized in IBM-compatible mode.
 01.03	D Reset maths co-processor
+
+02.01	D DRAT present
+	N DRAT presence test is 5555h/AAAAh written to port 4FAh and readback.
+02.02	D DRAT not present
+	N Triggered by readback failure in previous test.

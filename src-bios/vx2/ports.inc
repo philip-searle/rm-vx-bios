@@ -17,8 +17,8 @@ PORT_UNKNOWN_4F9_IN	equ	4F9h
 	MISC_IO_NPUDETECT	equ	80h	; 0=skip NPU detect on boot
 
 PORT_UNKNOWN_81		equ	81h
-PORT_UNKNOWN_4FA	equ	4FAh
-PORT_UNKNOWN_8FA	equ	8FAh
+PORT_DRAT_4FA		equ	4FAh
+PORT_GENE_8FA		equ	8FAh
 PORT_UNKNOWN_CFF	equ	0CFFh
 
 ; ═╡ -W/8/16 ╞═╡ RM diagnostic code ╞═══════════════════════════════════════════

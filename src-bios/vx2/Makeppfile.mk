@@ -4,6 +4,7 @@
 include ../../tools/euroasm_scanner.mk
 
 OBJECTS	:=	reset.obj \
+			sdh_normal.obj \
 			rom_trailer.obj
 
 %.obj %.asm.lst: %.asm euroasm.ini

@@ -87,6 +87,9 @@ dw_b	%macro
 ; Underscore-suffixed opcodes are actually macros that specify an alternate
 ; instruction coding.  Used to match the encoding used by the original assembler
 ; which preferred the numerically higher of ambiguous encodings.
+cmp_		%macro
+		cmp	%*,CODE=LONG
+		%endmacro
 mov_		%macro
 		mov	%*,CODE=LONG
 		%endmacro
