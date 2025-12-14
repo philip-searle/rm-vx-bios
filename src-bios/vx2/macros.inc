@@ -47,7 +47,7 @@ AssertEqual	%macro
 		%endif
 		%endmacro
 
-; ═╡ Delay county ╞═════════════════════════════════════════════════════════════
+; ═╡ Delay count ╞═════════════════════════════════════════════════════════════
 ; Inserts short jumps to delay execution by count*7 clocks.
 Delay		%macro
 i		%for	1..%1
@@ -92,6 +92,9 @@ cmp_		%macro
 		%endmacro
 mov_		%macro
 		mov	%*,CODE=LONG
+		%endmacro
+sub_		%macro
+		sub	%*,CODE=LONG
 		%endmacro
 xor_		%macro
 		xor	%*,CODE=LONG

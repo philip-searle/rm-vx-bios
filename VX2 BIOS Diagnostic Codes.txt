@@ -29,3 +29,10 @@ Hi/Lo	? Description
 	N DRAT presence test is 5555h/AAAAh written to port 4FAh and readback.
 02.02	D DRAT not present
 	N Triggered by readback failure in previous test.
+
+03.01	D GENE present - write to port xxxx and read back
+	N Port tested is 8FAh
+03.04	D GENE not present
+	N Codes 03.02 and 03.03 not used
+
+04.01	D Write to PEGA, reset EGA and blank screen
