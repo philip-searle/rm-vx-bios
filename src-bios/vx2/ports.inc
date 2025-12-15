@@ -1,7 +1,7 @@
 
 PORT_UNKNOWN_28F8	equ	28F8h
 
-; ═╡ -W/16 ╞═╡ Misc I/O ╞═══════════════════════════════════════════════════════
+; ═╡ -W/16 ╞═╡ Misc I/O - GENE???  ╞═══════════════════════════════════════════════════════
 ; Write bit 0: network LED?
 PORT_UNKNOWN_4F8	equ	4F8h
 	MISC_IO_UNKHI	equ	0FFh

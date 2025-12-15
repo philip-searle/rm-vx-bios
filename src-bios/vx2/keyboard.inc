@@ -10,6 +10,10 @@ PORT_KBC_DATA	equ	60h
 
 ; ═╡ R-/8 ╞═╡ Port B (keyswitch/monitor select) ╞═══════════════════════════════
 PORT_KBC_PORTB	equ	61h
+KBC_PORTB_CHCHK	equ	08h	; 1=enable I/O channel check
+KBC_PORTB_PACHK	equ	04h	; 1=enable memory parity check
+KBC_PORTB_SPKR	equ	02h	; 1=enable speaker output
+KBC_PORTB_TMR2	equ	01h	; 1=enable timer cahnnel 2 output to speaker
 
 ; ═╡ R-/8 ╞═╡ Keyboard controller status ╞══════════════════════════════════════
 PORT_KBC_STATUS	equ	64h

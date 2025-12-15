@@ -12,6 +12,7 @@ SDH_NORMAL	PROGRAM	OutFile=sdh_normal.obj
 		include	"segments/bda.inc"
 		include	"segments/ivt.inc"
 		include	"ega.inc"
+		include	"keyboard.inc"
 		include	"ports.inc"
 
 		EXTERN	FatalError
@@ -162,9 +163,45 @@ SDH_Normal	PROC
 		sub_	al, al
 		out	dx, al			; Palette index 0
 		out	dx, al			; Set to black
-		ENDPROC	SDH_Normal
 
 ; ──────────────────────────────────────────────────────────────────────────────
 		DiagOut	Code=05h, Subcode=01h	; Reinit DRAT and GENE
+
+		; Clear parity checks by disabling and re-enabling
+		; the I/O channel and memory parity bits
+		xor_	al, al
+		out	PORT_KBC_PORTB, al	; Disable
+		Delay	2
+		mov	al, KBC_PORTB_CHCHK | KBC_PORTB_PACHK
+		out	PORT_KBC_PORTB, al	; Re-enable
+		Delay	2
+
+		; GENE ???
+		mov	al, 2
+		mov	dx, PORT_UNKNOWN_4F8
+		out	dx, al
+		inc	dx		; Advance to PORT_UNKNOWN_4F9
+		mov	al, 1Fh
+		out	dx, al
+
+		mov	ax, cs
+		mov	ds, ax
+		mov	si, GeneInit
+		mov	cx, SIZE#GeneInit
+		mov	dx, PORT_UNKNOWN_4F8
+.writeGeneReg	mov_	al, cl
+		dec	al
+		out	dx, al		; GENE register index
+		inc	dx		; Increment to PORT_UNKNOWN_4F9
+		lodsb
+		out	dx, al		; GENE register value
+		loop	.writeGeneReg
+
+		ENDPROC	SDH_Normal
+
+		d 6 * b			; Align
+GeneInit	d b	00h, 00h, 00h, 00h, 00h, 00h, \
+			00h, 00h, 00h, 00h, 01h, 00h, \
+			00h, 00h, 0Fh, 14h, 3Fh, 82h
 
 ENDPROGRAM	SDH_NORMAL
