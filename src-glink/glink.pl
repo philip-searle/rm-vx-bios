@@ -48,7 +48,12 @@ struct ResolvedFixup => [qw(
     data_record_offset data
 )], named_constructor => 1;
 
-my $cs = Config::Scoped->new( file => 'glink.lnk' );
+my $cs = Config::Scoped->new(
+    file => 'glink.lnk',
+    warnings => {
+        permissions => 'off'
+    }
+);
 my $config = $cs->parse;
 
 # OmfFile instances, keyed by module_name, lowercased

@@ -5,7 +5,7 @@ euroasm.x: euroasm/easource/euroasm.x
 euroasm/easource/euroasm.x: euroasm.*.zip
 	# Extract source ZIP
 	&mkdir -p euroasm
-	rm -r euroasm/*
+	&rm -fm euroasm/**/*
 	unzip euroasm.*.zip -d euroasm/
 	# Apply custom patches (--binary because of CRLF line endings)
 	patch --binary euroasm/maclib/linf32.htm euroasm-patch32.diff
